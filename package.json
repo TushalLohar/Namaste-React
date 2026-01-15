@@ -29,6 +29,8 @@
     "react-dom": "^19.2.3"
   },
   "browserslist": [
-    "last 3 versions"
+    "last 3 versions",
+    ">1%",
+    "not dead"
   ] 
 }
