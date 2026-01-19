@@ -22,3 +22,10 @@
 - Tree shaking – removes unused code
 - Different dev & production builds – optimized output
 - Uses browserslist – browser compatibility support
+
+
+# react hooks
+- normal JS utilities functions - written by facebook
+- presnt in node moudles
+- useState() - superpowerful state varibales in react
+- useEffect() - 
