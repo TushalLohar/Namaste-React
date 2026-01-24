@@ -29,3 +29,7 @@
 - presnt in node moudles
 - useState() - superpowerful state varibales in react
 - useEffect() - 
+
+# 2 types of routing
+- client side routing
+- server side routing

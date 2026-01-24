@@ -1,8 +1,13 @@
 import { LOGO_URL } from "./utils/constants.utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [LoggedIn, setLoggedIn] = useState("Login");
+  //if no dependenxies array => useeffect will get render eevrytime header is render
+  //id dependencies is empty => means useefect calls on only initial render only and (just once)
+  //if dependency array is LoggedIn , useffect will called everytime my LoggedIn chanegs
+  useEffect(() => {}, []);
   return (
     <div className="header">
       <div className="logo-container">
@@ -10,9 +15,15 @@ const Header = () => {
       </div>
       <div className="navitems">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/About">About Us</Link>
+          </li>
+          <li>
+            <Link to="/Contact">Contact Us</Link>
+          </li>
           <li>Cart</li>
           <li>
             <button

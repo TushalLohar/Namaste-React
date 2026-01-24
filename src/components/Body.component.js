@@ -13,17 +13,17 @@ const Body = () => {
   //whwenwver state varibales changes react starts the reconcilation process and renrenders teh whole component
   const [Searchtext, setSearchtext] = useState("");
   useEffect(() => {
-    fechData();
+    fetchData();
   }, []);
 
-  const fechData = async () => {
+  const fetchData = async () => {
     const data = await fetch(API_URL);
 
     const json = await data.json();
 
     const restaurants =
-      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || [];
+      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+
 
     console.log("restaurants array:", restaurants);
     setListofRestaurents(restaurants);
@@ -62,7 +62,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filter = ListofRestaurents.filter(
-              (res) => res.info.avgRating > 4,
+              (res) => res.info.avgRating > 4.5,
             );
             setFilteredRestaurant(filter);
           }}
