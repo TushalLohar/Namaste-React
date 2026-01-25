@@ -1,9 +1,9 @@
-
 import Restaurantcard from "./Restaurantcard.component.js";
 import Shimmer from "./shimmer_component.js";
 import { API_URL } from "./utils/constants.utils.js";
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //local state varibale
@@ -22,8 +22,8 @@ const Body = () => {
     const json = await data.json();
 
     const restaurants =
-      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-
+      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [];
 
     console.log("restaurants array:", restaurants);
     setListofRestaurents(restaurants);
@@ -49,7 +49,7 @@ const Body = () => {
           <button
             onClick={() => {
               const filter = ListofRestaurents.filter((res) =>
-                res.info.name.toLowerCase().includes(Searchtext.toLowerCase())
+                res.info.name.toLowerCase().includes(Searchtext.toLowerCase()),
               );
 
               setFilteredRestaurant(filter);
@@ -75,7 +75,9 @@ const Body = () => {
             <Restaurantcard resData={dataObj_list[1]}/>
          */}
         {FilteredRestaurant.map((restaurant) => (
-          <Restaurantcard key={restaurant.info.id} resData={restaurant.info} />
+          <Link key={restaurant.info.id} to={"/menu/" + restaurant.info.id}>
+            <Restaurantcard resData={restaurant.info} />
+          </Link>
         ))}
         {/* {dataObj_list.map((x,index)=>(
           <Restaurantcard key={index} resData={x}/> //but never use index as key..react itself has recommmed this

@@ -1,3 +1,8 @@
+/* Removes underline from ALL links in the app */
+a {
+  text-decoration: none;
+  color: inherit;        /* Keeps the text color you set, not the default link blue */
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -121,4 +126,104 @@
 .filter{
   display: flex;
 
+}
+/* --- MAIN CONTAINER --- */
+.menu {
+  text-align: center;         /* Centers the Restaurant Name & Header */
+  max-width: 800px;           /* Keeps the page width nice and readable */
+  margin: 20px auto;          /* Centers the container on the screen */
+}
+
+/* --- HEADER STYLES --- */
+.menu h1 {
+  font-size: 50px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #f60909;
+}
+
+.menu > p {
+  color: #091b7f;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.menu h2 {
+  font-size: 25px;
+  text-align: left;           /* "Menu" title should stay Left */
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+  color: #71383c;
+}
+
+.menu ul {
+  padding: 0;
+  list-style-type: none;      /* Removes bullet points */
+}
+
+/* --- MENU ITEM (The Fix is Here) --- */
+.menu-item {
+  display: flex;              /* Restores the Side-by-Side layout */
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;           /* 👈 CRITICAL FIX: Forces text back to the left */
+  border-bottom: 1px solid #d3d3d3;
+  padding: 20px 0;
+  margin-bottom: 10px;
+}
+
+/* --- TEXT DETAILS --- */
+.menu-item-text {
+  width: 70%;
+}
+
+.menu-item-text h2 {
+  margin: 0;
+  font-size: 25px;
+  color: #3e4152;
+}
+
+.price {
+  font-size: 18px;
+  color: #ed2d1c;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.description {
+  color: #000000;
+  opacity: 0.70;
+  font-size: 16px;
+  margin-top: 14px;
+  width: 90%;
+}
+
+/* --- IMAGE & BUTTON --- */
+.menu-item-image {
+  width: 156px;
+  height: 136px;
+  position: relative;
+}
+
+.menu-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.add-btn {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: #60b246;
+  border: 1px solid #d3d3d3;
+  padding: 6px 25px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
