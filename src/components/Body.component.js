@@ -4,6 +4,7 @@ import { API_URL } from "./utils/constants.utils.js";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./utils/useOnlineStatus.js";
 
 const Body = () => {
   //local state varibale
@@ -29,6 +30,14 @@ const Body = () => {
     setListofRestaurents(restaurants);
     setFilteredRestaurant(restaurants);
   };
+
+  const onlineStatus=useOnlineStatus();
+  if(onlineStatus===false) return <h1>Looks like u are offline ....please check your intenret connection</h1>
+
+
+
+
+
   //conditional rendering
   // if (ListofRestaurents.length === 0) {
   //   return <Shimmer />;
