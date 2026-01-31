@@ -35,10 +35,10 @@ const Restaurantcard = ({ resData }) => {
      * rounded-[2rem]: Extreme rounded corners for a premium 'pebble' look.
      * hover:shadow-[...]: Applies a deep, large shadow only on hover to give 'lift'.
      */
-    <div className="group relative w-[280px] bg-white rounded-[2rem] p-2 transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
+    <div className="group relative w-70 bg-white rounded-4xl p-2 transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
       
       {/* --- UI: IMAGE BOX --- */}
-      <div className="relative h-[190px] w-full overflow-hidden rounded-[1.7rem] shadow-sm">
+      <div className="relative h-47.5 w-full overflow-hidden rounded-[1.7rem] shadow-sm">
         <img
           src={CDN_URL + cloudinaryImageId}
           alt={name}
@@ -46,7 +46,7 @@ const Restaurantcard = ({ resData }) => {
         />
 
         {/* GRADIENT OVERLAY: Makes text labels on the image (like Delivery Time) readable. */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* --- UI: BADGES (ABSOLUTE) --- */}
         <div className="absolute top-3 left-3 flex gap-2">

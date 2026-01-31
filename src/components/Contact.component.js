@@ -43,7 +43,7 @@ const Contact = () => {
               group: Applied to parent so we can trigger child animations (like icon scale) on hover.
               hover:-translate-y-1: Smoothly lifts the card 4px up on hover.
           */}
-          <div className="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <div className="bg-white p-8 rounded-4xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
             {/* ICON CONTAINER: group-hover:bg-emerald-600 changes bg color when the WHOLE card is hovered. */}
             <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 transition-colors duration-300">
               <span className="text-2xl group-hover:scale-110 transition-transform">📧</span>
@@ -57,7 +57,7 @@ const Contact = () => {
           </div>
 
           {/* --- CARD COMPONENT: PHONE --- */}
-          <div className="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <div className="bg-white p-8 rounded-4xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
             <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 transition-colors duration-300">
               <span className="text-2xl group-hover:scale-110 transition-transform">📞</span>
             </div>
@@ -70,7 +70,7 @@ const Contact = () => {
           </div>
 
           {/* --- CARD COMPONENT: ADDRESS --- */}
-          <div className="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <div className="bg-white p-8 rounded-4xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
             <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 transition-colors duration-300">
               <span className="text-2xl group-hover:scale-110 transition-transform">📍</span>
             </div>

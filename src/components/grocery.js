@@ -29,8 +29,8 @@ const Grocery = () => {
               duration-[3000ms]: Overriding the default speed so each fruit bounces at 
               a different rhythm, making the UI feel more alive and less robotic.
           */}
-          <div className="absolute top-10 left-10 text-4xl animate-bounce duration-[3000ms]">🥦</div>
-          <div className="absolute bottom-10 right-10 text-4xl animate-bounce duration-[2000ms]">🍎</div>
+          <div className="absolute top-10 left-10 text-4xl animate-bounce duration-3000">🥦</div>
+          <div className="absolute bottom-10 right-10 text-4xl animate-bounce duration-2000">🍎</div>
           <div className="absolute top-20 right-20 text-2xl opacity-50 rotate-12">🍇</div>
 
           <div className="relative z-10 space-y-8">

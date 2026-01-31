@@ -51,10 +51,10 @@ const Shimmer = () => {
           {Array.from({ length: 8 }).map((_, i) => (
             <div
               key={i}
-              className="w-full bg-white rounded-[2rem] p-3 space-y-6 shadow-sm border border-slate-100"
+              className="w-full bg-white rounded-2rem p-3 space-y-6 shadow-sm border border-slate-100"
             >
               {/* IMAGE SKELETON: Matches the h-[190px] and rounded-[1.7rem] of the real cards. */}
-              <div className="h-[190px] w-full bg-slate-200 rounded-[1.7rem] animate-pulse" />
+              <div className="h-190px w-full bg-slate-200 rounded-[1.7rem] animate-pulse" />
 
               {/* CONTENT SKELETON: Mimics the restaurant name and cuisine text. */}
               <div className="px-3 pb-4 space-y-4">

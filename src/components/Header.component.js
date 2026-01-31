@@ -72,7 +72,7 @@ const Header = () => {
                onlineStatus ? "bg-emerald-500" : "bg-rose-500"
              }`}></div>
           </div>
-          <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent hidden sm:inline">
+          <span className="text-2xl font-black tracking-tighter bg-linear-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent hidden sm:inline">
             BITE
           </span>
         </Link>

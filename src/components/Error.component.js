@@ -23,7 +23,7 @@ const Error = () => {
      * bg-gradient-to-br: Creates a sophisticated 'Bottom-Right' linear gradient.
      * via-white: Adds a middle color stop to make the transition from slate to emerald smoother.
      */
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-emerald-50 px-6">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 via-white to-emerald-50 px-6">
       
       {/* --- UI: GLASSMORPHISM CARD ---
           bg-white/70: 70% opacity white background.
@@ -43,7 +43,7 @@ const Error = () => {
             into the shape of the letters. It's a very popular modern 'sexy' UI trick.
         */}
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3
-          bg-gradient-to-r from-slate-900 to-emerald-600
+          bg-linear-to-r from-slate-900 to-emerald-600
           bg-clip-text text-transparent">
           Oops! Something broke
         </h1>
@@ -75,7 +75,7 @@ const Error = () => {
         <Link
           to="/"
           className="inline-block px-8 py-3 rounded-full
-          bg-gradient-to-r from-emerald-600 to-emerald-500
+          bg-linear-to-r from-emerald-600 to-emerald-500
           text-white font-semibold
           hover:shadow-lg hover:shadow-emerald-300/40
           transition-all duration-300 active:scale-95"

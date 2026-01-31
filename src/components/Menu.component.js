@@ -54,9 +54,9 @@ const Menu = () => {
           over the background.
       */}
       <header className="pt-12 px-6">
-        <div className="max-w-3xl mx-auto bg-white rounded-[32px] p-8 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] border border-white relative overflow-hidden">
+        <div className="max-w-3xl mx-auto bg-white rounded-4xl p-8 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] border border-white relative overflow-hidden">
           {/* Subtle Decorative Gradient using absolute positioning and blur */}
-          <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-50 rounded-bl-full -z-0 opacity-40 transform translate-x-10 -translate-y-10"></div>
+          <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-50 rounded-bl-full z-0 opacity-40 transform translate-x-10 -translate-y-10"></div>
 
           <div className="relative z-10 flex flex-col sm:flex-row justify-between items-start gap-4">
             <div>
@@ -73,7 +73,7 @@ const Menu = () => {
             </div>
 
             {/* RATING PILL: A mini-component style to show restaurant score. */}
-            <div className="bg-white border border-slate-100 rounded-2xl p-3 shadow-sm min-w-[80px] text-center">
+            <div className="bg-white border border-slate-100 rounded-2xl p-3 shadow-sm min-w-20 text-center">
               <div className="text-emerald-600 font-black text-lg flex items-center justify-center gap-1 border-b border-slate-50 pb-1 mb-1">
                 ⭐ {avgRating}
               </div>
@@ -133,7 +133,7 @@ const Menu = () => {
 
               {/* ITEM IMAGE: Right Side with Absolute ADD Button */}
               <div className="relative shrink-0 mx-auto sm:mx-0">
-                <div className="w-[156px] h-[144px] rounded-2xl overflow-hidden shadow-inner bg-slate-100">
+                <div className="w-39 h-36 rounded-2xl overflow-hidden shadow-inner bg-slate-100">
                   <img
                     src={FOOD_URL + imageId}
                     alt={name}
