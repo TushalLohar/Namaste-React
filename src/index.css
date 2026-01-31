@@ -1,1 +1,3 @@
+/* Entry CSS for the main app (food.js / Swiggy). Imports Tailwind so utility classes work. */
+
 @import "tailwindcss";

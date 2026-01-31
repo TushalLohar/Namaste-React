@@ -1,3 +1,11 @@
+/*
+ * FILE: app.js
+ * ROLE: Standalone demo entry (not the main Swiggy app): mounts multiple React roots to show
+ *       createElement, JSX, and functional components. Loaded by index.html with type="module".
+ *       The main food app is in src/food.js and is mounted from a different HTML (e.g. swiggy.html).
+ *       Solves: learning createElement vs JSX, single vs multiple roots, component composition.
+ */
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 

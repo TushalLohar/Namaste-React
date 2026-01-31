@@ -1,3 +1,10 @@
+/*
+ * FILE: constants.utils.js
+ * ROLE: Central place for API and asset URLs used across the app. Imported by Body (API_URL),
+ *       Restaurantcard (CDN_URL), Menu (FOOD_URL), Header (LOGO_URL), useRestaurantMenu (MENU_URL).
+ *       Solves: single source of truth for URLs; easy to switch env or API version in one file.
+ */
+
 export const CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
