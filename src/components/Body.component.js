@@ -5,7 +5,7 @@
  */
 
 import Restaurantcard from "./Restaurantcard.component.js";
-import Shimmer from "./shimmer_component.js";
+import Shimmer from "./Shimmer.component.js";
 import { API_URL } from "./utils/constants.utils.js";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";

@@ -41,13 +41,13 @@ const Shimmer = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
           
-          /**
-           * --- LOGIC: GENERATING MOCK CARDS ---
+          
+           {/* * --- LOGIC: GENERATING MOCK CARDS ---
            * Array.from({ length-8 }): A JavaScript trick to create an array of 8 
            * undefined items so we can .map() over them to create 8 skeleton cards.
            * Note: We use 'i' (index) as a key here because these items are static 
-           * and won't ever change order.
-           */
+           * and won't ever change order. */}
+           
           {Array.from({ length: 8 }).map((_, i) => (
             <div
               key={i}
