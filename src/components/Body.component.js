@@ -10,32 +10,35 @@ import { API_URL } from "./utils/constants.utils.js";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./utils/useOnlineStatus.js";
+import { isOpen } from "./Restaurantcard.component.js";
 
 const Body = () => {
   /**
    * --- HOOKS: STATE MANAGEMENT ---
    * useState is a Hook that lets you add React state to functional components.
    */
-  
-  // Holds the master list of restaurants from the API. We keep this "pure" so we can 
+
+  // Holds the master list of restaurants from the API. We keep this "pure" so we can
   // always revert back to the full list without making another network request.
   const [ListofRestaurents, setListofRestaurents] = useState([]);
 
-  // This is what is actually mapped in the UI. It can be a subset of the master list 
+  // This is what is actually mapped in the UI. It can be a subset of the master list
   // (e.g., only high-rated or search-matched restaurants).
   const [FilteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  // A "Controlled Component" state. Every keystroke updates this state, making 
+  // A "Controlled Component" state. Every keystroke updates this state, making
   // React the single source of truth for the input's value.
   const [Searchtext, setSearchtext] = useState("");
 
   // UI State: Helps us toggle the 'Top Rated' button look and reset filters correctly.
   const [activeFilter, setActiveFilter] = useState("all");
 
+  const RestaurantCardOpen = isOpen(Restaurantcard);
+
   /**
    * --- HOOKS: SIDE EFFECTS ---
-   * useEffect runs after the component renders. 
-   * The empty dependency array [] tells React to run this ONLY ONCE (on mount), 
+   * useEffect runs after the component renders.
+   * The empty dependency array [] tells React to run this ONLY ONCE (on mount),
    * similar to 'componentDidMount' in class components.
    */
   useEffect(() => {
@@ -44,8 +47,8 @@ const Body = () => {
 
   /**
    * --- LOGIC: DATA FETCHING ---
-   * async/await handles the asynchronous nature of fetch. 
-   * We parse the JSON and use 'Optional Chaining' (?.) to safely navigate the 
+   * async/await handles the asynchronous nature of fetch.
+   * We parse the JSON and use 'Optional Chaining' (?.) to safely navigate the
    * deeply nested Swiggy API structure without crashing if a property is missing.
    */
   const fetchData = async () => {
@@ -54,10 +57,11 @@ const Body = () => {
       const json = await data.json();
 
       // Navigate the API structure to get the array of restaurant objects
-      const restaurants =
-        json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants || [];
+      const mainCard = json?.data?.cards?.find(
+      (x) => x?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
 
+    const restaurants = mainCard?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
       setListofRestaurents(restaurants);
       setFilteredRestaurant(restaurants);
     } catch (error) {
@@ -73,7 +77,7 @@ const Body = () => {
    */
   const handleSearch = () => {
     const filtered = ListofRestaurents.filter((res) =>
-      res.info.name.toLowerCase().includes(Searchtext.toLowerCase())
+      res.info.name.toLowerCase().includes(Searchtext.toLowerCase()),
     );
     setFilteredRestaurant(filtered);
     setActiveFilter("search");
@@ -128,7 +132,19 @@ const Body = () => {
                 // Trigger handleSearch if the user hits the 'Enter' key
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               />
-              <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-emerald-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <svg
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-emerald-500 transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
             </div>
 
             {/* TOP RATED FILTER BUTTON */}
@@ -140,7 +156,9 @@ const Body = () => {
                   setActiveFilter("all");
                 } else {
                   // Filter the master list for ratings > 4.2
-                  const filter = ListofRestaurents.filter((res) => res.info.avgRating > 4.2);
+                  const filter = ListofRestaurents.filter(
+                    (res) => res.info.avgRating > 4.2,
+                  );
                   setFilteredRestaurant(filter);
                   setActiveFilter("top");
                 }
@@ -172,7 +190,12 @@ const Body = () => {
               // hover:-translate-y-2: Smooth 'lift' animation on card hover
               className="group transition-transform duration-500 hover:-translate-y-2"
             >
-              <Restaurantcard resData={restaurant.info} />
+              {restaurant.info.isOpen ? (
+                <RestaurantCardOpen resData={restaurant.info} />
+              ) : (
+                <Restaurantcard resData={restaurant.info} />
+              )}
+              
             </Link>
           ))}
         </div>
@@ -185,12 +208,12 @@ export default Body;
 
 /**
  * REVISION / INTERVIEW NOTES:
- * * 1. Why handleSearch? We extracted the logic so it could be reused by both the 'Search' 
+ * * 1. Why handleSearch? We extracted the logic so it could be reused by both the 'Search'
  * button (click) and the 'Enter' key (keyboard event). This is called 'Don't Repeat Yourself' (DRY).
- * * 2. Why Shimmer? It improves 'Perceived Performance'. Users feel the app is faster if they 
+ * * 2. Why Shimmer? It improves 'Perceived Performance'. Users feel the app is faster if they
  * see a placeholder rather than a blank white screen while data is traveling from the server.
- * * 3. Conditional Rendering: Notice we check 'onlineStatus' and 'ListofRestaurents.length' 
+ * * 3. Conditional Rendering: Notice we check 'onlineStatus' and 'ListofRestaurents.length'
  * BEFORE we reach the main return. This is 'Guard Clause' logic.
- * * 4. Key Prop: Every item in a map() must have a unique 'key'. This allows React to 
+ * * 4. Key Prop: Every item in a map() must have a unique 'key'. This allows React to
  * identify which items changed, were added, or were removed, optimizing the re-render.
  */

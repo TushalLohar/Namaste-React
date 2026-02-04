@@ -10,28 +10,39 @@
 import { useEffect, useState } from "react"
 
 
+const useOnlineStatus = () => {
+    // Initialize with the actual current status instead of hardcoded 'true'
+    const [onlineStatus, setOnlineStatus] = useState(navigator.onLine);
 
-const useOnlineStatus=()=>{
+    useEffect(() => {
+        // Define named handlers so they can be referenced in cleanup
+        const handleOffline = () => {
+            setOnlineStatus(false);
+        };
 
-    const [onlineStatus , setonlineStatus] = useState(true);
+        const handleOnline = () => {
+            setOnlineStatus(true); 
+        };
 
-    //check if online
-    useEffect(()=>{
-        window.addEventListener("offline", ()=>{
-            setonlineStatus(false)
+        window.addEventListener("offline", handleOffline);
+        window.addEventListener("online", handleOnline);
 
-        })
-        window.addEventListener("online", ()=>{
-            setonlineStatus(ture)
+        /**
+         * --- CLEANUP FUNCTION ---
+         * When the component using this hook is destroyed (unmounted), 
+         * we MUST remove the listeners. This is crucial for performance.
+         * Why? To prevent 'Memory Leaks' where the browser keeps listening 
+         * for events even after the user leaves the page.
+         */
 
-        })
+        return () => {
+            // Now these references work!
+            window.removeEventListener("offline", handleOffline);
+            window.removeEventListener("online", handleOnline);
+        };
+    }, []);
 
+    return onlineStatus;
+};
 
-    }, [])
-
-
-    return onlineStatus
-
-}
-
-export default useOnlineStatus
+export default useOnlineStatus;

@@ -9,25 +9,19 @@ import { CDN_URL } from "./utils/constants.utils";
 const Restaurantcard = ({ resData }) => {
   /**
    * --- LOGIC: PROPS & DESTRUCTURING ---
-   * resData is an object containing all restaurant info. 
-   * Destructuring allows us to use variables like 'name' directly instead 
+   * resData is an object containing all restaurant info.
+   * Destructuring allows us to use variables like 'name' directly instead
    * of 'resData.name'.
    */
-  const {
-    cloudinaryImageId,
-    name,
-    cuisines,
-    avgRating,
-    costForTwo,
-    sla,
-  } = resData;
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
+    resData;
 
   /**
    * --- LOGIC: DERIVED STATE ---
-   * We decide whether to show a 'Top Rated' badge based on the rating. 
+   * We decide whether to show a 'Top Rated' badge based on the rating.
    * This logic keeps the JSX cleaner.
    */
-  const isTopRated = avgRating >= 4.5;
+  const isTopRated = avgRating >= 4;
 
   return (
     /**
@@ -36,7 +30,6 @@ const Restaurantcard = ({ resData }) => {
      * hover:shadow-[...]: Applies a deep, large shadow only on hover to give 'lift'.
      */
     <div className="group relative w-70 bg-white rounded-4xl p-2 transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
-      
       {/* --- UI: IMAGE BOX --- */}
       <div className="relative h-47.5 w-full overflow-hidden rounded-[1.7rem] shadow-sm">
         <img
@@ -59,7 +52,9 @@ const Restaurantcard = ({ resData }) => {
           {/* Glassmorphism Rating Badge */}
           <div className="bg-white/80 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
             <span className="text-amber-500 text-xs">★</span>
-            <span className="text-slate-900 text-xs font-black tracking-tighter">{avgRating}</span>
+            <span className="text-slate-900 text-xs font-black tracking-tighter">
+              {avgRating}
+            </span>
           </div>
         </div>
 
@@ -87,13 +82,19 @@ const Restaurantcard = ({ resData }) => {
         */}
         <div className="flex items-center justify-between mt-5 pt-4 border-t border-slate-50">
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Budget</span>
-            <span className="text-sm font-black text-slate-800">{costForTwo}</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              Budget
+            </span>
+            <span className="text-sm font-black text-slate-800">
+              {costForTwo}
+            </span>
           </div>
 
           {/* Interactive Arrow: Changes color when the WHOLE card is hovered. */}
           <div className="h-8 w-8 bg-slate-50 rounded-full flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300">
-             <span className="text-slate-400 text-xs group-hover:text-white transition-colors">→</span>
+            <span className="text-slate-400 text-xs group-hover:text-white transition-colors">
+              →
+            </span>
           </div>
         </div>
       </div>
@@ -101,16 +102,26 @@ const Restaurantcard = ({ resData }) => {
   );
 };
 
+export const isOpen = (Restaurantcard) => {
+  return (Props) => {
+    return (
+      <div>
+        <label>Open</label>
+        <Restaurantcard {...Props} />
+      </div>
+    );
+  };
+};
 export default Restaurantcard;
 
 /**
  * REVISION / INTERVIEW NOTES:
- * * 1. Props vs State: This component uses Props (resData). Props are read-only and passed 
+ * * 1. Props vs State: This component uses Props (resData). Props are read-only and passed
  * from parent to child. State is managed internally (like in Body.js).
- * * 2. Key Prop: When mapping this component in Body.js, we MUST provide a unique 'key' 
+ * * 2. Key Prop: When mapping this component in Body.js, we MUST provide a unique 'key'
  * (like restaurant.info.id) so React can track changes efficiently.
- * * 3. Group Hover: By adding 'group' to the wrapper and 'group-hover:...' to children, 
+ * * 3. Group Hover: By adding 'group' to the wrapper and 'group-hover:...' to children,
  * we coordinate multiple animations (zoom, color change, lift) with one mouse movement.
- * * 4. Antialiasing: The tracking-tighter and font-black classes ensure the text 
+ * * 4. Antialiasing: The tracking-tighter and font-black classes ensure the text
  * looks sharp and premium, mimicking high-end apps like Uber Eats.
  */
