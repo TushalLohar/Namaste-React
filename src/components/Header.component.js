@@ -6,9 +6,10 @@
  */
 
 import { LOGO_URL } from "./utils/constants.utils";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useOnlineStatus from "./utils/useOnlineStatus";
+import UserContext from "./utils/UserContext";
 
 const Header = () => {
   /**
@@ -52,6 +53,8 @@ const Header = () => {
       location.pathname === path ? 'w-full' : 'w-0 group-hover:w-full'
     }`}></span>
   );
+
+  const {loggedInUser} = useContext(UserContext);
 
   return (
     /**
@@ -128,8 +131,11 @@ const Header = () => {
                   {isLoggedIn ? "Logout" : "Login"}
                 </span>
                 <span className="relative invisible">{isLoggedIn ? "Logout" : "Login"}</span>
+                
               </button>
+             
             </li>
+             <li className="font-bold">{loggedInUser}</li>
           </ul>
         </nav>
       </div>

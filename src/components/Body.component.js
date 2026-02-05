@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./utils/useOnlineStatus.js";
 import { isOpen } from "./Restaurantcard.component.js";
-
+import { useContext } from "react";
+import UserContext from "./utils/UserContext.js";
 const Body = () => {
   /**
    * --- HOOKS: STATE MANAGEMENT ---
@@ -58,10 +59,11 @@ const Body = () => {
 
       // Navigate the API structure to get the array of restaurant objects
       const mainCard = json?.data?.cards?.find(
-      (x) => x?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+        (x) => x?.card?.card?.gridElements?.infoWithStyle?.restaurants,
+      );
 
-    const restaurants = mainCard?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+      const restaurants =
+        mainCard?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
       setListofRestaurents(restaurants);
       setFilteredRestaurant(restaurants);
     } catch (error) {
@@ -98,6 +100,8 @@ const Body = () => {
         🔴 Looks like you are offline! Please check your internet connection.
       </h1>
     );
+
+    const {loggedInUser,setuserName} =useContext(UserContext);
 
   // 2. Loading State (Shimmer): Show a 'skeleton' UI while ListofRestaurents is empty.
   // This provides a "sexy" UX compared to a blank white screen.
@@ -173,6 +177,15 @@ const Body = () => {
               Top Rated ⭐️
             </button>
           </div>
+          <div className="flex flex-wrap items-center gap-4">
+          
+
+            <label>user name: </label>
+
+            <input className="border border-black p-2"
+             value={loggedInUser}
+             onChange={(e)=> setuserName(e.target.value)} />
+          </div>
         </div>
       </div>
 
@@ -195,7 +208,6 @@ const Body = () => {
               ) : (
                 <Restaurantcard resData={restaurant.info} />
               )}
-              
             </Link>
           ))}
         </div>

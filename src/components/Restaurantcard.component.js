@@ -4,9 +4,13 @@
  * ARCHITECTURE: A 'Presentation' component that receives 'resData' as a prop.
  */
 
+import { useContext } from "react";
 import { CDN_URL } from "./utils/constants.utils";
+import UserContext from "./utils/UserContext";
 
 const Restaurantcard = ({ resData }) => {
+
+  const {loggedInUser}= useContext(UserContext)
   /**
    * --- LOGIC: PROPS & DESTRUCTURING ---
    * resData is an object containing all restaurant info.
@@ -62,6 +66,7 @@ const Restaurantcard = ({ resData }) => {
         <div className="absolute bottom-3 right-3 bg-slate-900/70 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/20">
           {sla.deliveryTime} MINS
         </div>
+        
       </div>
 
       {/* --- UI: TEXT CONTENT --- */}
@@ -88,6 +93,7 @@ const Restaurantcard = ({ resData }) => {
             <span className="text-sm font-black text-slate-800">
               {costForTwo}
             </span>
+            <h4>{loggedInUser}</h4>
           </div>
 
           {/* Interactive Arrow: Changes color when the WHOLE card is hovered. */}

@@ -27,7 +27,7 @@ const Menu = () => {
    * It returns 'null' while loading and the 'json' data once the fetch is complete.
    */
   const restInfo = useRestaurantMenu(resID);
-  console.log(restInfo);
+
 
   const [showIndex, setShowIndex] = useState(null);
 

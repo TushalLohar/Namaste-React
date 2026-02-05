@@ -6,7 +6,7 @@
  * the content inside <Outlet /> changes based on the URL.
  */
 
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -18,7 +18,8 @@ import Body from "./components/Body.component.js";
 import Contact from "./components/Contact.component.js";
 import Error from "./components/Error.component.js";
 import Menu from "./components/Menu.component.js";
-import Shimmer from "./components/shimmer_component.js";
+import Shimmer from "./components/Shimmer.component.js";
+import UserContext from "./components/utils/UserContext.js";
 
 /**
  * --- PERFORMANCE: LAZY LOADING (Code Splitting) ---
@@ -35,8 +36,19 @@ const About = lazy(() => import("./components/About.componenet.js"));
  * This serves as the "Shell" of your application.
  */
 const Applayout = () => {
+
+  const [ userName , setuserName] = useState();
+
+  useEffect(()=>{
+    const data ={
+      name:"Tushal Lohar"
+    };
+    setuserName(data.name);
+  },[])
   return (
-    // 'antialiased' is a Tailwind utility that makes fonts look smoother/crisper.
+
+    <UserContext.Provider value={{loggedInUser:userName, setuserName}}>
+    {/* 'antialiased' is a Tailwind utility that makes fonts look smoother/crisper. */}
     <div className="min-h-screen bg-slate-50/30 font-sans antialiased text-slate-900">
       <Header />
       
@@ -50,6 +62,7 @@ const Applayout = () => {
         <Outlet />
       </main>
     </div>
+    </UserContext.Provider>
   );
 };
 

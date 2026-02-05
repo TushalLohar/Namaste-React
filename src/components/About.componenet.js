@@ -8,6 +8,7 @@
 import React from "react";
 import User from "./user.component.js";
 import UserClass from "./UserClass.component.js";
+import UserContext from "./utils/UserContext.js";
 
 /*
  * Class component: extends React.Component so we get this.props, this.state, and lifecycle methods.
@@ -23,6 +24,12 @@ class About extends React.Component {
         <h2 className="text-xl text-gray-700 mb-6">
           This is Namaste React Swiggy project
         </h2>
+        <div>
+          LoggedIn User
+          <UserContext.Consumer>
+            {({loggedInUser})=><h1 className="font-bold">{loggedInUser}</h1>}
+          </UserContext.Consumer>
+        </div>
 
         {/* Functional Component */}
         <User

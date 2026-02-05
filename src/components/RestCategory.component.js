@@ -2,7 +2,7 @@ import { useState } from "react";
 import ItemList from "./itemList.component";
 
 const RestCategory=({data , ShowItems , setShowIndex})=>{
-    console.log(data)
+  
 
    
 
