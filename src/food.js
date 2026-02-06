@@ -20,6 +20,9 @@ import Error from "./components/Error.component.js";
 import Menu from "./components/Menu.component.js";
 import Shimmer from "./components/Shimmer.component.js";
 import UserContext from "./components/utils/UserContext.js";
+import { Provider } from "react-redux";
+import appStore from "./components/utils/appStore.js";
+import Cart from "./components/Cart.component.js";
 
 /**
  * --- PERFORMANCE: LAZY LOADING (Code Splitting) ---
@@ -46,6 +49,7 @@ const Applayout = () => {
     setuserName(data.name);
   },[])
   return (
+    <Provider store={appStore}>
 
     <UserContext.Provider value={{loggedInUser:userName, setuserName}}>
     {/* 'antialiased' is a Tailwind utility that makes fonts look smoother/crisper. */}
@@ -63,6 +67,7 @@ const Applayout = () => {
       </main>
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -111,6 +116,10 @@ const appRouter = createBrowserRouter([
         path: "/menu/:resID", // Dynamic Routing: ':resID' is a variable parameter
         element: <Menu />,
       },
+      {
+        path:"/Cart",
+        element:<Cart/>
+      }
     ],
     // errorElement: This handles 404s or crashes anywhere in the app tree.
     errorElement: <Error />,
