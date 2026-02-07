@@ -1,51 +1,24 @@
-/*
- * FILE: UserClass.component.js
- * ROLE: Class-component version of a user card: shows count, count2, name, loc, and a button that
- *       updates state via setState. Used only on the About page next to User to compare class vs
- *       function components. Receives name and loc as props. Solves: demo of class state and
- *       setState; constructor sets initial state; render reads this.props and this.state.
- */
-
 import React from "react";
 
 class UserClass extends React.Component {
-  // Constructor: required when we need initial state (or to bind methods). Must call super(props)
-  // so this.props is set; then we set this.state. Without constructor we could use class fields
-  // (state = {...}) in modern React.
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      count: 1,
-      count2: 10,
-    };
-  }
-
   render() {
-    const { name } = this.props;
-    const { count2 } = this.state;
-
     return (
-      <div className="p-2.5 border border-gray-800 rounded-lg mb-4">
-        <h1 className="text-lg font-semibold">Count :{this.state.count}</h1>
-        <h1 className="text-lg font-semibold">Count2 :{count2}</h1>
-        <button
-          className="mt-2 px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 cursor-pointer transition-colors"
-          onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-              count2: count2 * this.state.count,
-            });
-          }}
-        >
-          Count increment
-        </button>
-
-        <h2 className="text-base mt-2">Name:{name}</h2>
-        <h3 className="text-base">Location:{this.props.loc}</h3>
-        <h4 className="text-sm text-gray-600">Contact :@Tushal_loahr</h4>
+      <div className="group p-8 rounded-[2.5rem] bg-slate-900 border border-slate-800 shadow-2xl transition-all hover:-translate-y-2">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-700">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <h4 className="text-xl font-black text-white leading-tight">{this.props.name}</h4>
+            <p className="text-emerald-400 font-bold text-xs uppercase tracking-widest">{this.props.loc}</p>
+          </div>
+        </div>
+        <p className="text-slate-400 font-medium leading-relaxed italic">
+          "Architecture that scales. We handle millions of requests so you can focus on your cravings."
+        </p>
       </div>
     );
   }
 }
+
 export default UserClass;
